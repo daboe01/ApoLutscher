@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE gsmarkup>
+<gsmarkup>
+
+<objects>
+
+  <sortDescriptor id="by_id" key="id" ascending="YES" numeric="YES"/>
+  <sortDescriptor id="by_wertstellung" key="wertstellungstag" ascending="NO"/>
+
+  <arrayController id="accounts_controller" entity="accounts_catalogue" autoFetch="YES" sortDescriptor="by_id"/>
+  <arrayController id="transactions_controller" entity="transaktionen" valueBinding="accounts_controller.selection.transactions" sortDescriptor="by_wertstellung"/>
+</objects>
+
+<entities>
+	<entity id="accounts_catalogue" store="#CPOwner.store">
+		<column name="id" primaryKey="YES"/>
+		<column name="kontostand"/>
+		<relationship type="toMany" name="transactions" targetColumn="kontonummer" target="transaktionen"/>
+	</entity>
+	<entity id="transaktionen" store="#CPOwner.store">
+		<column name="id" primaryKey="YES"/>
+		<column name="kontonummer"/>
+		<column name="kategorie"/>
+		<column name="belegtext"/>
+		<column name="buchungstag"/>
+		<column name="wertstellungstag"/>
+		<column name="empfaenger"/>
+		<column name="betrag"/>
+		<column name="description"/>
+	</entity>
+</entities>
+
+<connectors>
+	<outlet source="#CPOwner" target="accounts_controller" label="accountsController"/>
+	<outlet source="#CPOwner" target="transactions_controller" label="transactionsController"/>
+</connectors>
+
+
+</gsmarkup>
