@@ -1,6 +1,6 @@
-ApoBank
+ApoLutscher
 ==========
-This is PCCash for ApoBank, based on Cappuccino.
+This is PCCash for ApoBank, based on mojolicious, postgres and cappuccino.
 
 make apobank.pl run on a regular basis (e.g. in crontab)
 start e.g. with morbo backend.pl
