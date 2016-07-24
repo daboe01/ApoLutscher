@@ -7,7 +7,7 @@ use DateTime;
 use SQL::Abstract;
 use DBI;
 
-use constant username => 'VRK00000000000';
+use constant username => 'XXX00000000000';
 use constant password => '000000';
 
 sub getKontoumsaetze { my ($konto_index)=@_;
