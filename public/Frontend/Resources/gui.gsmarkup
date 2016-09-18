@@ -8,25 +8,36 @@
    <RightAlignedTextField id="rightAlignedText"/>
 </window>
 
+<window visible="NO">
+   <RightAlignedTextField id="rightAlignedText"/>
+</window>
+
+<window visible="NO" id="timeline_window" x="10" y="30" width="300" height="200">
+   <TimelineView id="timeline_view" halign="expand" valign="expand"/>
+</window>
+
 <window bridge="YES" id="accountswindow" delegate="#mycontroller">
    <splitView vertical="YES" autosaveName="vsplitter_accounts">
       <vbox>
         <scrollView hasHorizontalScroller="NO">
          <tableView zebra="yes" autosaveName="allaccounts_tv" id="accounts_tv" valueBinding="#CPOwner.accountsController" target="#CPOwner">
            <tableColumn identifier="id" title="Nummer" editable="NO"/>
-           <tableColumn identifier="kontostand" title="Stand" editable="NO"/>
+           <tableColumn identifier="kontostand" title="Stand" dataView="#rightAlignedText" editable="NO"/>
         </tableView>
       </scrollView>
     </vbox>
     <vbox>
-      <searchField valueBinding="#CPOwner.searchTerm"/>
+      <hbox>
+          <searchField valueBinding="#CPOwner.searchTerm"/>
+          <button title="Timeline" target="#CPOwner" action="openTimeline:"/>
+      </hbox>
       <scrollView hasHorizontalScroller="NO">
        <tableView zebra="yes" id="transactions_tv" autosaveName="transactions_tv" valueBinding="#CPOwner.transactionsController">
         <tableColumn identifier="wertstellungstag" title="tag" editable="NO"/>
         <tableColumn identifier="kategorie" title="kategorie" editable="NO"/>
         <tableColumn identifier="belegtext" title="belegtext" editable="NO"/>
         <tableColumn identifier="empfaenger" title="empfaenger" editable="NO"/>
-        <tableColumn identifier="betrag" title="betrag" editable="NO"/>
+        <tableColumn identifier="betrag" title="betrag" dataView="#rightAlignedText" editable="NO"/>
       </tableView>
       </scrollView>
    </vbox>
@@ -35,6 +46,8 @@
 </objects>
 
 <connectors>
+	<outlet source="#CPOwner" target="timeline_window" label="timelineWindow"/>
+	<outlet source="#CPOwner" target="timeline_view" label="timelineView"/>
 </connectors>
 
 
