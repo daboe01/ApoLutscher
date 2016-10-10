@@ -16,7 +16,7 @@ sub getKontoumsaetze { my ($konto_index)=@_;
     my $loginpage= $ua->get('https://www.apobank.de/ptlweb/WebPortal?bankid=8008&trackid=piwikcfac54a14c67718e')->res->body;
     my ($postaction, $tk);
     $postaction = $1 if $loginpage=~qr{form name="form1" action="([^"]+)"};
-    $tk = $1         if $loginpage=~qr{"tk" value="([^"]+)"};
+    $tk = $1         if $loginpage=~qr{"tk".+?value="([^"]+)"};
     $postaction=~s/&amp;/&/ogs;
 
 
